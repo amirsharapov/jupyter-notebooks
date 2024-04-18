@@ -16,80 +16,7 @@ def prettify(o: dict | list):
     return json.dumps(o, indent=2, ensure_ascii=False, default=str)
 
 
-PROMPT = '''\
-You are an AI programming assistant, utilizing the Deepseek Coder model. You are capable of:
-
-- Expertly answering questions related to programming and code
-- Can parse code snippets and extract useful information
-
-Your response should be a single JSON object with the following schema:
-
-```json
-{
-    "functions": [
-        {
-            "name": {
-                "type": "str",
-                "description": "The name of the function"
-            },
-            "parameters": {
-                "type": "array",
-                "description": "A list of parameters for the function",
-                "items": {
-                    "type": "str",
-                    "description": "The name of the parameter"
-                }
-            },
-            "return_type": {
-                "type": "str",
-                "description": "The return type of the function"
-            }
-            "body": {
-                "type": "str",
-                "description": "The body of the function"
-            }
-        }
-    ]
-}
-```
-
-Example Prompt:
-```
-def hello_world():
-    print("Hello, World!")
-
-
-def add(a, b):
-    return a + b
-```
-
-Example Response:
-```json
-{
-    "functions": [
-        {
-            "name": "hello_world",
-            "parameters": [],
-            "return_type": "None",
-        },
-        {
-            "name": "add",
-            "parameters": ["a", "b"],
-            "return_type": "int",
-        }
-    ]
-}
-```
-
-### Instruction:
-Given the following python code, please return a list of all the functions that are defined in the code.
-
-```
-{{code}}
-```
-
-### Response:
-'''
+PROMPT = open('assets/prompts/extract_python_functions.txt').read()
 
 
 def main():
@@ -104,7 +31,7 @@ def main():
     )
     
     response = model(
-        PROMPT.replace('{{code}}', open('main.py').read().replace('```', ''))
+        PROMPT.replace('{{code}}', open('main.py').read())
     )
 
     print('Response:')
