@@ -1,103 +1,47 @@
 import json
-from pathlib import Path
 
-from llama_cpp import Llama
-
-
-ROOT_PATH = Path('/home/amir/.cache/lm-studio/models/')
-MODEL_PATH = [
-    ROOT_PATH / 'TheBloke/Mistral-7B-Instruct-v0.2-GGUF/mistral-7b-instruct-v0.2.Q4_K_S.gguf',
-    ROOT_PATH / 'TheBloke/deepseek-coder-6.7B-instruct-GGUF/deepseek-coder-6.7b-instruct.Q4_K_S.gguf',
-    ROOT_PATH / 'QuantFactory/Meta-Llama-3-8B-Instruct-GGUF/Meta-Llama-3-8B-Instruct.Q5_K_M.gguf'
-][0]
-
-_model = None
-
-
-def get_model(model_path: Path):
-    global _model
-
-    if _model is None:
-        _model = Llama(
-            model_path.as_posix(),
-            n_gpu_layers=-1,
-            n_ctx=1024 * 8,
-            rope_freq_base=0,
-            rope_freq_scale=0,
-            n_batch=2048,
-            verbose=False
-        )
-
-    return _model
-
-
-def get_prompt(name: str):
-    if name == 'extract_python_functions':
-        return open('assets/prompts/extract_python_functions.txt').read()
-    
-    if name == 'fix_json_syntax':
-        return open('assets/prompts/fix_json_syntax.txt').read()
-    
-    raise ValueError(f'Prompt "{name}" not found')
-
-
-def prettify(o: dict | list):
-    return json.dumps(o, indent=2, ensure_ascii=False, default=str)
-
-
-def add(a, b):
-    return a + b
-
-
-def parse_text_from_completion(response: dict):
-    text = response['choices'][0]['text']
-    text = text.strip().replace('```json', '').removesuffix('```').strip()
-    return text
-
-
-def parse_json_from_completion(response: dict):
-    text = parse_text_from_completion(response)
-
-    try:
-        return json.loads(text)
-
-    except json.JSONDecodeError as e:
-        model = get_model(MODEL_PATH)
-        response = model.create_completion(
-            get_prompt('fix_json_syntax').replace('{{json}}', text).replace('{{error}}', str(e)),
-            max_tokens=-1
-        )
-
-        return parse_json_from_completion(response)
+from src import llms
+from src.common import prettify
+from src.paths import PROMPTS_DIRECTORY
 
 
 def main():
-    model = get_model(MODEL_PATH)
-    
-    response = model.create_completion(
-        get_prompt('extract_python_functions').replace('{{code}}', open('main.py').read()),
-        max_tokens=-1
-    )
+    prompts_base_path = PROMPTS_DIRECTORY / 'extract_python_functions'
+    prompts_paths = {
+        'system': prompts_base_path / 'system.txt',
+        'user': prompts_base_path / 'user.txt'
+    }
 
-    text = parse_text_from_completion(response)
-
-    try:
-        json.loads(text)
-
-    except json.JSONDecodeError as e:
-        print('Response is not a valid JSON. Retrying...')
-        
-        response = model.create_completion(
-            get_prompt('fix_json_syntax').replace('{{json}}', text).replace('{{error}}', str(e)),
-            max_tokens=-1
+    for model in [
+        # 'llama3',
+        'mistral',
+        # 'deepseek-coder'
+    ]:
+        response = llms.create_chat_completion(
+            model,
+            prompts_paths['system'].read_text(),
+            prompts_paths['user'].read_text().replace('{{ code }}', open('main.py').read()),
+            verbose=True,
+            output_format='json'
         )
+        
+        # response = llama3.create_chat_completion(
+        #     prompts_paths['system'].read_text(),
+        #     prompts_paths['user'].read_text().replace('{{ code }}', open('scratch_1.py').read()),
+        #     verbose=True
+        # )
 
-        text = parse_text_from_completion(response)
+        print(prettify(response))
+        print(prettify(json.loads(response['choices'][0]['text'])))
 
-    print('Response Parsed')
-    print('---')
-    print(prettify(json.loads(text)))
-    print('---')
+    # response = mistral.create_chat_completion(
+    #     prompts_paths['system'].read_text(),
+    #     prompts_paths['user'].read_text().replace('{{ code }}', open('scratch_1.py').read()),
+    #     verbose=True
+    # )
+
+    # print(prettify(response))
+    # print(response['choices'][0]['text'])
 
 
 if __name__ == '__main__':

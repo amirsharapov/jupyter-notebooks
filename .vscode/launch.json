@@ -10,6 +10,13 @@
             "request": "launch",
             "program": "${workspaceFolder}/main.py",
             "console": "integratedTerminal"
+        },
+        {
+            "name": "Python Debugger: scratch.py",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/scratch.py",
+            "console": "integratedTerminal"
         }
     ]
 }

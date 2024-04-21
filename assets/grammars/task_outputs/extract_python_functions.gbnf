@@ -1,0 +1,32 @@
+root   ::= obj
+
+obj  ::=
+  "{\n" ws ("\"function_definitions\": ") functionDefinitionArray ? "}"
+
+functionDefinitionArray ::=
+  "[" ws (
+            functionDefinition
+    ("," ws functionDefinition)*
+  )? "]" ws
+
+functionDefinition ::=
+    "{" ws (
+        "\"name\":" ws string
+        "," ws "\"parameters\": " ws parametersArray
+        "," ws "\"return_type\": " ws string
+  )? "}" ws
+
+parametersArray ::=
+  "[" ws (
+            string
+    ("," ws string)*
+  )? "]" ws
+
+string ::=
+  "\"" (
+    [^"\\\x7F\x00-\x1F] |
+    "\\" (["\\/bfnrt] | "u" [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F]) # escapes
+  )* "\"" ws
+
+# Optional space: by convention, applied in this grammar after literal chars when allowed
+ws ::= ([ \t\n] ws)?
