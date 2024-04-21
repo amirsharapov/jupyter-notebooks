@@ -1,43 +1,49 @@
 import time
 from typing import Literal
+from pathlib import Path
 
 from llama_cpp import Llama, LlamaGrammar
 
 from src import paths
+from src.common import prettify
 
 
-ModelLiteral = Literal[
-    'llama3',
-    'mistral',
-    'deepseek-coder'
-]
+def list_lm_studio_gguf_models() -> list[Path]:
+    return list(paths.MODELS_DIRECTORY.glob('**/*.gguf'))
 
-OutputFormatLiteral = Literal[
-    'json',
-    'json-arr',
-    'plain'
-]
 
-MODEL_PATHS = {
-    'llama3': paths.LLAMA_3_8B_INSTRUCT_MODEL_PATH,
-    'mistral': paths.MISTRAL_7B_INSTRUCT_MODEL_PATH,
-    'deepseek-coder': paths.DEEPSEEK_CODER_6_7B_MODEL_PATH
-}
+def load_lm_studio_gguf_model_lookup(save_to_disk: bool = True) -> dict[str, Path]:
+    models = list_lm_studio_gguf_models()
+    models = sorted(models, key=lambda m: m.stem)
 
-CUSTOM_STOPWORDS = {
-    'llama3': [
-        '<|eot_id|>',
-    ],
+    lookup = {
+        model.stem: model.as_posix() for
+        model in
+        models
+    }
+
+    if save_to_disk:
+        Path('models.json').write_text(prettify(lookup))
+
+    return lookup
+
+
+MODEL_PARAMS = {
+    'llama-2-7b-chat.Q3_K_L': {
+        'stop_words': [
+            '<|eot_id|>'
+        ]
+    }
 }
 
 
 def create_chat_completion(
-    model: ModelLiteral,
+    model: str | Path,
     system_prompt: str,
     user_prompt: str,
     temperature: float = 0.1,
     verbose: bool = False,
-    output_format: OutputFormatLiteral = None
+    grammar: str | Path = None
 ):
     response = {
         'prompts': [
@@ -66,7 +72,7 @@ def create_chat_completion(
         user_message=user_prompt,
         temperature=temperature,
         verbose=verbose,
-        output_format=output_format
+        grammar=grammar
     )
 
     start = time.time()
@@ -91,29 +97,28 @@ def create_chat_completion(
 
 
 def stream_chat_completion(
-    model: ModelLiteral,
+    model: str | Path,
     system_message: str,
     user_message: str,
     temperature: float = 0.1,
     verbose: bool = False,
-    output_format: OutputFormatLiteral = 'plain'
+    grammar: str | Path = None
 ):
+    model_paths = load_lm_studio_gguf_model_lookup()
+    model = model_paths[model] if isinstance(model, str) else model
+    model = Path(model).as_posix()
+
+    grammar=Path(grammar) if grammar else None
+
     llm = Llama(
-        model_path=MODEL_PATHS[model].as_posix(),
+        model,
         n_ctx=1024 * 16,
         n_gpu_layers=-1,
         verbose=verbose,
         temperature=temperature
     )
 
-    # grammar = None
-
-    # if output_format == 'json':
-    #     grammar = LlamaGrammar.from_file(paths.JSON_GRAMMAR_GBNF_PATH)
-    # if output_format == 'json-arr':
-    #     grammar = LlamaGrammar.from_file(paths.JSON_ARR_GRAMMAR_GBNF_PATH)
-
-    grammar = LlamaGrammar.from_file(paths.EXTRACT_PYTHON_FUNCTIONS_OUTPUT_GRAMMAR)
+    grammar = LlamaGrammar.from_file(grammar)
 
     output = llm.create_chat_completion(
         messages=[
@@ -135,7 +140,7 @@ def stream_chat_completion(
         delta = chunk['choices'][0]['delta']
         
         if 'content' in delta:
-            if delta['content'] in CUSTOM_STOPWORDS.get(model, []):
+            if delta['content'] in MODEL_PARAMS.get(model, {}).get('stop_words', []):
                 break
             
             yield chunk

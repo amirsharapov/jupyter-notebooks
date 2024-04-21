@@ -1,0 +1,5 @@
+Parse the following python code and return all defined functions.
+
+```python
+{{ code }}
+```

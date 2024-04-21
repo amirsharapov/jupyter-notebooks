@@ -1,5 +1,0 @@
-Extract all function definitions from the below code:
-
-```python
-{{ code }}
-```
