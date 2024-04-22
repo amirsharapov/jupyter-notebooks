@@ -24,10 +24,6 @@ Your response should align with the following JSON schema:
                 "return_type": {
                     "type": "string",
                     "description": "Return type"
-                },
-                "body": {
-                    "type": "string",
-                    "description": "Code body of the function"
                 }
             }
         }
@@ -62,26 +58,22 @@ Should yield:
         {
             "name": "hello_world",
             "parameters": [],
-            "return_type": "None",
-            "body": "print(\"Hello, World!\")"
+            "return_type": "None"
         },
         {
             "name": "add",
             "parameters": ["a", "b"],
-            "return_type": "int",
-            "body": "return a + b"
+            "return_type": "int"
         },
         {
             "name": "timer_decorator",
             "parameters": ["func"],
-            "return_type": "None",
-            "body": "def inner(*args, **kwargs):\n\tstart = time.time()\n\tresponse = func(*args, **kwargs)\n\telapsed = time.time() - start\n\tprint(f'Elapsed: {elapsed} seconds')\n\treturn response\nreturn inner"
+            "return_type": "<function 'inner'>"
         },
         {
             "name": "inner",
             "parameters": ["*args", "**kwargs"],
-            "return_type": "None",
-            "body": "start = time.time()\nresponse = func(*args, **kwargs)\nelapsed = time.time() - start\nprint(f'Elapsed: {elapsed} seconds')\nreturn response"
+            "return_type": "None"
         }
     ]
 }
@@ -100,12 +92,8 @@ def print_function_contents():
 
     print(tree.body)
 
-def print_json_dumps_with_indent(obj, indent: int = 4):
-    print(json.dumps(obj, indent=indent))
-
 if __name__ == '__main__':
     print_function_contents()
-    print_json_dumps_with_indent({"hello": 0, "world": 1}, indent=2)
 ```
 
 should yield:
@@ -115,17 +103,7 @@ should yield:
         {
             "name": "print_function_contents",
             "parameters": [],
-            "return_type": "None",
-            "body": "tree = ast.parse(\"\"\"\ndef hello_world():\n\tprint(\"hello world!\")\n\"\"\")\n\nprint(tree.body)"
-        },
-        {
-            "name": "print_json_dumps_with_indent",
-            "parameters": [
-                "obj",
-                "indent"
-            ],
-            "return_type": "None",
-            "body": "print(json.dumps(obj, indent=indent))"
+            "return_type": "None"
         }
     ]
 }

@@ -14,7 +14,6 @@ functionDefinition ::=
         "\"name\":" ws string
         "," ws "\"parameters\": " ws parametersArray
         "," ws "\"return_type\": " ws string
-        "," ws "\"body\": " ws string
   )? "}" ws
 
 parametersArray ::=

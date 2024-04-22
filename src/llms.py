@@ -17,7 +17,7 @@ def load_lm_studio_gguf_model_lookup(save_to_disk: bool = True) -> dict[str, Pat
     models = sorted(models, key=lambda m: m.stem)
 
     lookup = {
-        model.stem: model.as_posix() for
+        (model.parent.parent.name + '/' + model.stem): model.as_posix() for
         model in
         models
     }

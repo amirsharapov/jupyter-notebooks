@@ -1,12 +1,12 @@
 {
-    "Meta-Llama-3-8B-Instruct-Q5_K_M": "/home/amir/.cache/lm-studio/models/lmstudio-community/Meta-Llama-3-8B-Instruct-GGUF/Meta-Llama-3-8B-Instruct-Q5_K_M.gguf",
-    "Meta-Llama-3-8B-Instruct.Q5_K_M": "/home/amir/.cache/lm-studio/models/QuantFactory/Meta-Llama-3-8B-Instruct-GGUF/Meta-Llama-3-8B-Instruct.Q5_K_M.gguf",
-    "Meta-Llama-3-8B.Q4_1": "/home/amir/.cache/lm-studio/models/QuantFactory/Meta-Llama-3-8B-GGUF/Meta-Llama-3-8B.Q4_1.gguf",
-    "deepseek-coder-33b-instruct.Q4_K_M": "/home/amir/.cache/lm-studio/models/TheBloke/deepseek-coder-33B-instruct-GGUF/deepseek-coder-33b-instruct.Q4_K_M.gguf",
-    "deepseek-coder-6.7b-instruct.Q4_K_S": "/home/amir/.cache/lm-studio/models/TheBloke/deepseek-coder-6.7B-instruct-GGUF/deepseek-coder-6.7b-instruct.Q4_K_S.gguf",
-    "deepseek-coder-7b-instruct-v1.5-Q4_K_M": "/home/amir/.cache/lm-studio/models/LoneStriker/deepseek-coder-7b-instruct-v1.5-GGUF/deepseek-coder-7b-instruct-v1.5-Q4_K_M.gguf",
-    "deepseek-coder-7b-instruct-v1.5-Q5_K_M": "/home/amir/.cache/lm-studio/models/LoneStriker/deepseek-coder-7b-instruct-v1.5-GGUF/deepseek-coder-7b-instruct-v1.5-Q5_K_M.gguf",
-    "deepseek-llm-7b-chat.Q5_K_M": "/home/amir/.cache/lm-studio/models/TheBloke/deepseek-llm-7B-chat-GGUF/deepseek-llm-7b-chat.Q5_K_M.gguf",
-    "llama-2-7b-chat.Q3_K_L": "/home/amir/.cache/lm-studio/models/TheBloke/Llama-2-7B-Chat-GGUF/llama-2-7b-chat.Q3_K_L.gguf",
-    "mistral-7b-instruct-v0.2.Q4_K_S": "/home/amir/.cache/lm-studio/models/TheBloke/Mistral-7B-Instruct-v0.2-GGUF/mistral-7b-instruct-v0.2.Q4_K_S.gguf"
+    "lmstudio-community/Meta-Llama-3-8B-Instruct-Q5_K_M": "/home/amir/.cache/lm-studio/models/lmstudio-community/Meta-Llama-3-8B-Instruct-GGUF/Meta-Llama-3-8B-Instruct-Q5_K_M.gguf",
+    "QuantFactory/Meta-Llama-3-8B-Instruct.Q5_K_M": "/home/amir/.cache/lm-studio/models/QuantFactory/Meta-Llama-3-8B-Instruct-GGUF/Meta-Llama-3-8B-Instruct.Q5_K_M.gguf",
+    "QuantFactory/Meta-Llama-3-8B.Q4_1": "/home/amir/.cache/lm-studio/models/QuantFactory/Meta-Llama-3-8B-GGUF/Meta-Llama-3-8B.Q4_1.gguf",
+    "TheBloke/deepseek-coder-33b-instruct.Q4_K_M": "/home/amir/.cache/lm-studio/models/TheBloke/deepseek-coder-33B-instruct-GGUF/deepseek-coder-33b-instruct.Q4_K_M.gguf",
+    "TheBloke/deepseek-coder-6.7b-instruct.Q4_K_S": "/home/amir/.cache/lm-studio/models/TheBloke/deepseek-coder-6.7B-instruct-GGUF/deepseek-coder-6.7b-instruct.Q4_K_S.gguf",
+    "LoneStriker/deepseek-coder-7b-instruct-v1.5-Q4_K_M": "/home/amir/.cache/lm-studio/models/LoneStriker/deepseek-coder-7b-instruct-v1.5-GGUF/deepseek-coder-7b-instruct-v1.5-Q4_K_M.gguf",
+    "LoneStriker/deepseek-coder-7b-instruct-v1.5-Q5_K_M": "/home/amir/.cache/lm-studio/models/LoneStriker/deepseek-coder-7b-instruct-v1.5-GGUF/deepseek-coder-7b-instruct-v1.5-Q5_K_M.gguf",
+    "TheBloke/deepseek-llm-7b-chat.Q5_K_M": "/home/amir/.cache/lm-studio/models/TheBloke/deepseek-llm-7B-chat-GGUF/deepseek-llm-7b-chat.Q5_K_M.gguf",
+    "TheBloke/llama-2-7b-chat.Q3_K_L": "/home/amir/.cache/lm-studio/models/TheBloke/Llama-2-7B-Chat-GGUF/llama-2-7b-chat.Q3_K_L.gguf",
+    "TheBloke/mistral-7b-instruct-v0.2.Q4_K_S": "/home/amir/.cache/lm-studio/models/TheBloke/Mistral-7B-Instruct-v0.2-GGUF/mistral-7b-instruct-v0.2.Q4_K_S.gguf"
 }
