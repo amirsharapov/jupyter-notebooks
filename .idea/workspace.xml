@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2217634c-d0eb-4bbf-87cd-79df6d9e7b1c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/assets/prompts/extract_python_functions.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/prompts/fix_json_syntax.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/prompts/write_python_tests.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coursera-follow-along_andrew-ng.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/grammars/json.gbnf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/grammars/json_arr.gbnf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scratch.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scratch_1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scratch_4.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/json_encoder.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/llms.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/paths.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/identify_python_functions/grammars/output.gbnf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/identify_python_functions/prompts/system.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/identify_python_functions/prompts/user.txt" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 2
+}]]></component>
+  <component name="ProjectId" id="2fVYJNTq5ZCmQdkqbqd8CTdOjnO" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/amir/Code/nano-agi"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-0509580d9d50-746f403e7f0c-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.14494.241" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2217634c-d0eb-4bbf-87cd-79df6d9e7b1c" name="Changes" comment="" />
+      <created>1713887640335</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1713887640335</updated>
+    </task>
+    <servers />
+  </component>
+</project>
