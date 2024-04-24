@@ -1,1 +1,1 @@
-Run `jupyter notebook` when running.
+Run `jupyter lab` to start server.
